@@ -93,8 +93,6 @@ class _AudioLocalStoreState extends State<AudioLocalStore> {
           ),
         ) ??
         false;
-    //   _player.pause();
-    // Navigator.of(context);
   }
 
   @override
@@ -128,7 +126,7 @@ class _AudioLocalStoreState extends State<AudioLocalStore> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(
-                    const Radius.circular(40),
+                    Radius.circular(40),
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -168,9 +166,6 @@ class _AudioLocalStoreState extends State<AudioLocalStore> {
                           await audioPlayer.seek(position);
 
                           await audioPlayer.resume();
-                          // setState(() {
-                          //   audioPlayer.seek(Duration(seconds: value.toInt()));
-                          // });
                         },
                       ),
                     ),
@@ -182,7 +177,6 @@ class _AudioLocalStoreState extends State<AudioLocalStore> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          //Text(position.toString()),
                           Text(
                               "${position.inMinutes}:${position.inSeconds.remainder(60)}"),
                           Text(
@@ -211,10 +205,8 @@ class _AudioLocalStoreState extends State<AudioLocalStore> {
                               iconSize: 25,
                               onPressed: () async {
                                 if (isPlaying) {
-                                  //await audioPlayer.pause();
                                   audioPause();
                                 } else {
-                                  //await audioPlayer.play(url);
                                   audioPlay();
                                 }
                               },
