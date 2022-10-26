@@ -82,8 +82,9 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                   setState(() {
                     _player.pause();
                   });
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Welcome()));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => Welcome()),
+                      (Route<dynamic> route) => false);
                 },
               )
             ],

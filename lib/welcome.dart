@@ -27,7 +27,7 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const MainPage()));
               },
               child: const Text(
@@ -41,7 +41,7 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AudioFromAssets()));
@@ -57,7 +57,7 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AudioLocalStore()));
@@ -73,7 +73,7 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AudioTextSync()));
