@@ -1,6 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-
 import 'welcome.dart';
 
 class AudioTextSync extends StatefulWidget {
@@ -11,7 +10,7 @@ class AudioTextSync extends StatefulWidget {
 }
 
 class _AudioTextSyncState extends State<AudioTextSync> {
-  bool playing = false; // at the begining we are not playing any song
+  bool playing = false;
   late AudioPlayer _player;
   late AudioCache cache;
 
@@ -30,18 +29,14 @@ class _AudioTextSyncState extends State<AudioTextSync> {
   @override
   void initState() {
     super.initState();
-    //_init();
-
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
-    //allDuu = _player.duration.inMilliseconds.toDouble();
     _player.onDurationChanged.listen((newDuration) {
       setState(() {
         musicLength = newDuration;
       });
     });
 
-    //this function will allow us to move the cursor of the slider while we are playing the song
     _player.onAudioPositionChanged.listen((newPosition) {
       setState(() {
         position = newPosition;
@@ -70,8 +65,8 @@ class _AudioTextSyncState extends State<AudioTextSync> {
   Future<bool> onWillPop() async {
     return await showDialog(
           context: context,
-          builder: (context) => new AlertDialog(
-            title: Text('Delete This Contact?'),
+          builder: (context) => AlertDialog(
+            title: const Text('Delete This Contact?'),
             content:
                 const Text('This will delete the contact from your device.'),
             actions: <Widget>[
@@ -88,15 +83,13 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                     _player.pause();
                   });
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Welcome()));
+                      MaterialPageRoute(builder: (context) => const Welcome()));
                 },
               )
             ],
           ),
         ) ??
         false;
-    //   _player.pause();
-    // Navigator.of(context);
   }
 
   @override
@@ -104,8 +97,12 @@ class _AudioTextSyncState extends State<AudioTextSync> {
     return WillPopScope(
       onWillPop: () => onWillPop(),
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Audio with Text'),
+        ),
         body: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -118,14 +115,14 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                   width: double.infinity,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 height: 250,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(40),
                   ),
                   boxShadow: [
@@ -133,21 +130,21 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                       color: Colors.black.withOpacity(0.03),
                       spreadRadius: 10,
                       blurRadius: 10,
-                      offset: Offset(0, 0), // changes position of shadow
+                      offset: const Offset(0, 0), // changes position of shadow
                     ),
                   ],
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Center(
                         child: Text(
                       displayText,
-                      style: TextStyle(fontSize: 20, color: Colors.black),
+                      style: const TextStyle(fontSize: 20, color: Colors.black),
                     )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SizedBox(
@@ -164,7 +161,7 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 16,
                         right: 16,
                       ),
@@ -174,21 +171,21 @@ class _AudioTextSyncState extends State<AudioTextSync> {
                           //Text(position.toString()),
                           Text(
                             "${position.inMinutes}:${position.inSeconds.remainder(60)}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18.0,
                             ),
                           ),
 
                           Text(
                             "${musicLength.inMinutes}:${musicLength.inSeconds.remainder(60)}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18.0,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(

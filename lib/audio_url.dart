@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:audioplayers/audioplayers.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
 import 'welcome.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,9 +18,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     // TODO: implement initState
-    //setAudio();
     super.initState();
-    //setAudio();
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
         isPlaying = state == PlayerState.PLAYING;
@@ -44,36 +38,11 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  // Future setAudio() async {
-  //   final result = await FilePicker.platform.pickFiles();
-  //   if (result != null) {
-  //     final file = File(result.files.single.path!);
-  //     audioPlayer.setUrl(file.path, isLocal: true);
-  //   }
-  // }
-  // setAudio()async{
-  //   audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-  //
-  //   // String url = '';
-  //   // audioPlayer.setUrl(url);
-  //   final result= await FilePicket.platform.pickFiles();
-  //   if(result != null){
-  //     final file = File(result.files)
-  //   }
-  //   audioPlayer.setUrl(url.path,isLocal: true);
-  //
-  // }
-/*  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    audioPlayer.dispose();
-  }*/
   Future<bool> onWillPop() async {
     return await showDialog(
           context: context,
-          builder: (context) => new AlertDialog(
-            title: Text('Delete This Contact?'),
+          builder: (context) => AlertDialog(
+            title: const Text('Delete This Contact?'),
             content:
                 const Text('This will delete the contact from your device.'),
             actions: <Widget>[
@@ -97,8 +66,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ) ??
         false;
-    //   _player.pause();
-    // Navigator.of(context);
   }
 
   @override
@@ -106,6 +73,10 @@ class _MainPageState extends State<MainPage> {
     return WillPopScope(
       onWillPop: () => onWillPop(),
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Audio from URL'),
+        ),
         body: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -120,14 +91,14 @@ class _MainPageState extends State<MainPage> {
                   width: double.infinity,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 height: 250,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(40),
                   ),
                   boxShadow: [
@@ -141,16 +112,16 @@ class _MainPageState extends State<MainPage> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
-                    Text(
-                      'Masrafi',
+                    const Text(
+                      'https://www.soundhelix.com/examples/\nmp3/SoundHelix-Song-2.mp3',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 10,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SizedBox(
@@ -162,23 +133,18 @@ class _MainPageState extends State<MainPage> {
                         onChanged: (value) async {
                           final position = Duration(seconds: value.toInt());
                           await audioPlayer.seek(position);
-
                           await audioPlayer.resume();
-                          // setState(() {
-                          //   audioPlayer.seek(Duration(seconds: value.toInt()));
-                          // });
                         },
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 16,
                         right: 16,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          //Text(position.toString()),
                           Text(
                             "${position.inMinutes}:${position.inSeconds.remainder(60)}",
                           ),
@@ -187,7 +153,7 @@ class _MainPageState extends State<MainPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(

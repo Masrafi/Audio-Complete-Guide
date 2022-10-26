@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'audio_assets.dart';
 import 'audio_local_store.dart';
 import 'audio_with_text.dart';
@@ -18,7 +17,7 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Audio Boss'),
+        title: const Text('Audio Complete Guide'),
       ),
       body: Column(
         children: [
@@ -29,10 +28,10 @@ class _WelcomeState extends State<Welcome> {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainPage()));
+                    MaterialPageRoute(builder: (context) => const MainPage()));
               },
               child: const Text(
-                "From URL",
+                "Audio from URL",
               ),
             ),
           ),
@@ -42,11 +41,13 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AudioFromAssets()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AudioFromAssets()));
               },
               child: const Text(
-                "From Asset",
+                "Audio from Asset",
               ),
             ),
           ),
@@ -56,11 +57,13 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AudioLocalStore()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AudioLocalStore()));
               },
               child: const Text(
-                "From Storage",
+                "Audio from Storage",
               ),
             ),
           ),
@@ -70,8 +73,10 @@ class _WelcomeState extends State<Welcome> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AudioTextSync()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AudioTextSync()));
               },
               child: const Text(
                 "Audio with Text",
